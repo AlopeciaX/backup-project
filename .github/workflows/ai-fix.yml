@@ -1,0 +1,25 @@
+name: AI Auto IP Fixer
+
+on:
+  workflow_dispatch: # 우리가 수동으로 "IP 고쳐!"라고 버튼을 누를 때 작동함
+
+jobs:
+  fix-ip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: AI Simulate - Fix IP Address
+        run: |
+          # 원래는 여기서 AI API를 호출하지만, 지금은 AI가 시켰다고 가정하고 
+          # 부산 서버 IP(10.10.34.22)로 자동 수정하는 마법을 부려봅니다.
+          sed -i 's/TARGET_IP="1.1.1.1"/TARGET_IP="10.10.34.22"/g' backup.sh
+          
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "AI-Bot"
+          git config --global user.email "ai@bot.com"
+          git add backup.sh
+          git commit -m "AI가 바뀐 부산 서버 IP로 자동 수정함"
+          git push
