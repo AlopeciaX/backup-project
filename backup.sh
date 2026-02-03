@@ -1,1 +1,2 @@
-scp backup.sql admin@10.10.34.21:/data/ 
+TARGET_IP="10.10.34.21"
+scp backup.sql admin@${TARGET_IP}:/data/ 
